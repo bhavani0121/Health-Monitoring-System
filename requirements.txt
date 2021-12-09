@@ -15,4 +15,3 @@ firebase-admin==5.0.1
 firebase==3.0.1
 pycryptodome==3.10.1
 sklearn==0.0
-pickle
