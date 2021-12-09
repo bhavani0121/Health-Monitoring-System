@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Monitoring System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+<!-- <div class="container"> -->
+  
+  <div class="index-page">
+    <div class="top">
+      <h4>
+        <form action='/logout' method='post'>
+          
+          <!-- <img style="float: left;" height="50" width='50' src="{{ url_for('static',filename='images/login-logo.png') }}"> -->
+          <span id="quote"> The ground work for all happiness is good health!</span>
+          <input type="submit" id='logout' value="Log-out">
+        </form>
+        <!-- <span id="logout">Log-out</span> -->
+      </h4>
+      
+    </div>
+
+
+    <div class="header-wrapper">
+      <div class="logo">
+                <h1>HMS</h1>
+      </div>
+      <div class="header row">
+        <div class="header-content col-lg-3">
+              <!-- <div class="menu"> -->
+                <a  id="HOME-ref" href="#">HOME</a>
+              <!-- </div> -->
+        </div>
+        <div class="header-content col-lg-3">
+              <!-- <div class="menu"> -->
+                <a  id="Personal-ref" href="#">PERSONAL</a> 
+              <!-- </div> -->
+        </div>
+        <div class="header-content col-lg-3">
+              <!-- <div class="menu"> -->
+                <a id="Prescription-ref" href="#">PRESCRIPTION</a>
+              <!-- </div> -->
+        </div>
+        <div class="header-content col-lg-3">
+              <!-- <div class="menu"> -->
+              <a  id='Record-ref' href="#">RECORD</a>
+            
+              <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container"> -->
+    <div class="in-box">
+
+      <div id="HOME">
+        <h1 style="text-align: center;font-size: 2.5em;font-style:italic" id="welcome">Health Record</h1>
+        
+        <p style="text-align: center;font-size: 1.5em;font-weight: bold;">Name: {{fname}}</p>
+        <p style="text-align: center;font-size: 1.5em;font-weight: bold;">Id: {{fmobile}}</p>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <div class="row">
+          
+          <div class="col-lg-4">
+            <div class="items" id="heart-rate">
+              <div class="item" id="hr">Heart rate</div> <p>{{fhr}}</p> 
+            </div>
+          </div>
+          <div class="col-lg-4 ">
+            <div class="items" id="spo2">
+              <div class="item" id="o2">SpO2</div> <p>{{fspo2}}</p> 
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="items" id="temperature">
+              <div class="item" id="temp">Temperature(F)</div> <p>{{ftemp}}</p> 
+            </div>
+          </div>
+          <!-- <div class="col-lg-3">
+            <div class="items" id="sensor">
+            <div class="item" id="s">Sensor</div> <p>sensor</p> </div>
+          </div> -->
+        </div>
+
+        <div class="Status">
+          <p id="status">Status:<span> {{pred}}</span></p>            
+        </div>
+        <div><br><br><br></div>
+      </div>
+      
+      <div id="Personal">
+        <div class="Details" >
+          
+          <!-- <p id="status">Name: {{fuser_id}}</p> -->
+          <p id="status">Name: {{fname}}</p>
+          <p id="status">Mobile: {{fmobile}}</p>
+          <p id="status">Gender: {{fgender}}</p>
+          <p id="status">Age: {{fage}}</p>
+          <p id="status">Height: {{fheight}} cm</p>
+          <p id="status">Weight: {{fweight}} kgs</p>
+          <p id="status">BMI: {{fbmi}}</p>
+        </div>
+        <div><br><br><br><br><br><br><br><br><br><br></div>
+      </div>
+      <div id="Prescription">
+        <div id="prescription">
+          <img height="600" src="{{ url_for('static',filename='images/prescription01.png') }}">
+        </div>
+        
+      </div>
+      <div id="Record">
+        <div class=row>
+          
+          <div class='col-md-6 plots' >
+            <!-- Pulse -->
+            <!-- <div class="plot-title">Pulse</div> -->
+            <div id="myPlot_hr" style="width: 40vw; max-height:80vh"></div>
+          </div>
+          <div class='col-md-6 plots' >
+            <!-- <div class="plot-title">SpO2</div> -->
+            <div id="myPlot_spo2" style="width: 40vw; max-height:80vh"></div>
+          </div>          
+          <!-- <canvas id='lineChart' style="width: 40vw; max-height:80vh"></canvas> -->
+       
+        </div>
+        <br><br><br>
+      </div>
+
+    </div>
+    <!-- </div> -->
+    
+
+  </div>
+<!-- </div> -->
+
+  <script>
+    let userID = '{{fmobile}}';
+
+    let pred_hr = {{values_hr | safe}};
+    let pred_spo2 = {{values_spo2 | safe}};
+    let pred_ts = {{labels | safe}};
+
+    // var ctx = document.getElementById('lineChart').getContext('2d');
+    // var lineChart = new Chart(ctx,{
+    //     type: "line",
+    //     data: {
+    //       labels: pred_ts,
+    //       datasets: [
+    //           {
+    //           label: "Data points",
+    //           data: pred_hr,
+    //           fill: false,
+    //           borderColor: "rgb(75,192,192)",
+    //           lineTension: 0.1
+    //           }
+    //       ]
+    //     },
+    //     options: {
+    //     responsive: false
+    //     }
+
+    // });
+
+  </script>
+  <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="{{ url_for('static',filename='js/jquery-2.1.4.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/script-plot.js') }}"></script>
+  
+
+</body>
+</html>
+

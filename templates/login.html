@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HMS Login</title>
+    
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles-login.css')}}">
+</head>
+<body>
+
+<div class="container">
+	<div class="login-register">
+		<div id="login-form">
+				<div id="logo">
+					<img height="100" src="{{ url_for('static',filename='images/login-logo.png') }}">
+				</div>
+				<!-- <h3>Login here!</h3> -->
+				<form action='/login' method='post'>
+					<p>Email-ID</p>
+					<input type='email' id="id" name="id" placeholder="Enter Email-ID">
+					<p>Password</p>
+					<input type='password' id="psswd" name="psswd" placeholder="Enter Password">
+					<input type='submit' id='login-button' value="Login">
+					<!-- <input type='submit' id='register-here' value='Register here!'> -->
+					<!-- <button id="login-button">LogIn</button> -->
+					<p id="register-here"><a href="#">Register here!</a></p>
+				</form>
+
+				<div id="content"></div>
+		</div>
+		<div id="registration-form">
+			<div id="logo">
+				<img height="100" src="{{ url_for('static',filename='images/login-logo.png') }}">
+			</div>
+			<!-- <h3>Login here!</h3> -->
+			<form action='/register' method='post'>
+				<p>Name</p>
+				<input type='text' id="name" name="name" placeholder="Enter Name">
+				<p>Mobile Number</p>
+				<input id="mobile" name="mobile" placeholder="Enter Mobile Number">
+				<p>Age</p>
+				<input type='number' id="age" name="age" placeholder="Enter Age">
+				<p>Gender</p>
+				<input type='text' id="gender" name="gender" placeholder="Enter Gender (M/F)">
+				<p>Height</p>
+				<input type='number' id="height" name="height" placeholder="Enter Height(cm)">
+				<p>Weight</p>
+				<input type='number' id="weight" name="weight" placeholder="Enter Weight(kgs)">
+				<p>Email-ID</p>
+				<input id="id" name="id" placeholder="Enter Email-ID">
+				<p>Password</p>
+				<input type='password' id="psswd" name="psswd" placeholder="Enter Password">
+				<input type='submit' id='register-button' value="Register">
+				<!-- <input type='submit' id='login-here' value='Login here!'> -->
+				<!-- <button id="register-button">Register</button> -->
+				<p id="login-here"><a href="#">Login here!</a></p>
+			</form>
+
+			<div id="content"></div>
+		</div>
+		
+	</div>
+
+    
+
+</div>
+
+
+
+
+<!-- 
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script> -->
+
+<!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script> -->
+
+ 
+  <script src="{{ url_for('static',filename='js/jquery-2.1.4.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/login.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/ajax-utils.js') }}"></script>
+ 
+
+
+</body>
+</html>
