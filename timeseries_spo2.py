@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib
 from tensorflow.keras.models import model_from_json
 from sklearn.preprocessing import MinMaxScaler
 from dateutil.relativedelta import relativedelta
