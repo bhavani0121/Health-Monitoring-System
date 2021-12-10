@@ -174,7 +174,7 @@ def home(userID): #take id as argument
 
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run()
 
 
 # https://colab.research.google.com/drive/1U7d4ThVROzuEIXd433FuN0tPnfpq0xvH#scrollTo=K8b_fqVZA6f-
