@@ -142,25 +142,30 @@ def home(userID): #take id as argument
     # prediction=40
 
     ref = db.reference('/'+userID+'/Sensor_data')
-    d = ref.order_by_key().get()
+    d = ref.order_by_key().limit_to_last(200).get()
     Data = []
+    predicted_hr = []
+    predicted_spo2 = []
+    ts_list = []
+    
     if(bool(d)):
         for key, val in d.items():
             data = []
             # print(type(val['timestamp']))
             strng = val['timestamp']
-            ts = datetime.strptime(strng,"%Y-%m-%dT%H:%M:%S.%f")
+            # ts = datetime.strptime(strng,"%Y-%m-%dT%H:%M:%S.%f")
+            ts = datetime.strptime(strng,"%Y-%m-%dT%H:%M:%S")
             data.append(ts)
             data.append(int(val['hr']))
             data.append(int(val['spo2']))
             Data.append(data)
 
-    # print(Data) # [[5, 6, 7], [5, 6, 7]]
-    df = pd.DataFrame(Data, columns = ['Time and date', 'PULSE','SpO2'])
-    predicted_hr,ts_list = timeseries.main(df)
-    predicted_spo2,ts_list = timeseries_spo2.main(df)
-    # print(predicted_hr)
-    print(ts_list)
+        # print(Data) # [[5, 6, 7], [5, 6, 7]]
+        df = pd.DataFrame(Data, columns = ['Time and date', 'PULSE','SpO2'])
+        predicted_hr,ts_list = timeseries.main(df)
+        predicted_spo2,ts_list = timeseries_spo2.main(df)
+        # print(predicted_hr)
+        # print(ts_list)
 
     return render_template('index.html', \
         ftemp=str(temp),fhr=str(hr),fspo2=str(SpO2),pred = result, \
@@ -174,7 +179,7 @@ def home(userID): #take id as argument
 
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True)
 
 
 # https://colab.research.google.com/drive/1U7d4ThVROzuEIXd433FuN0tPnfpq0xvH#scrollTo=K8b_fqVZA6f-
@@ -186,5 +191,3 @@ if __name__=='__main__':
 # https://levelup.gitconnected.com/deploy-a-predictive-model-with-flask-33c1976293cc
 
 # sweet.viz
-
-# p

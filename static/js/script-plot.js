@@ -16,7 +16,7 @@ firebase.initializeApp(config);
 
 
 // Number of last elements to work with, in the 'timestamped_measures' node of the database: 
-const nbOfElts = 60;
+const nbOfElts = 200;
 // user_ID = document.getElementById('');
 console.log(userID);
 

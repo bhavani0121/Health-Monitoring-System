@@ -65,7 +65,7 @@ def main(data):
     date = data1.iloc[data1.index[-1]]
     ts_list = []
     for i in range(len(predicted_data)):
-        date += relativedelta(seconds=5)
+        date += relativedelta(seconds=60)
         ts_list.append(str(date))
 
 
