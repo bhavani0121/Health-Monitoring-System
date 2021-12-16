@@ -147,7 +147,7 @@ def home(userID): #take id as argument
     predicted_hr = []
     predicted_spo2 = []
     ts_list = []
-    print(d)
+    # print(d)
     if(bool(d) and len(d)>50):
         for key, val in d.items():
             data = []
