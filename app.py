@@ -142,13 +142,13 @@ def home(userID): #take id as argument
     # prediction=40
 
     ref = db.reference('/'+userID+'/Sensor_data')
-    d = ref.order_by_key().limit_to_last(200).get()
+    d = ref.order_by_key().limit_to_last(100).get()
     Data = []
     predicted_hr = []
     predicted_spo2 = []
     ts_list = []
-    
-    if(bool(d)):
+    print(d)
+    if(bool(d) and len(d)>50):
         for key, val in d.items():
             data = []
             # print(type(val['timestamp']))
