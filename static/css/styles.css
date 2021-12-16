@@ -196,9 +196,9 @@ body {
   font-size: 200%;
   
 }
-#status span{
+/* #status span{
   font-family: "Brush Script MT", cursive;
-}
+} */
 
 input[type=submit]{
   background-color: #0678a5;

@@ -121,7 +121,7 @@ def home(userID): #take id as argument
         age = int(val['age'])
 
     EDA=0.26 #fixed
-    bmi=(weigth/height)*100
+    bmi=(weigth/pow((height*0.01),2))
     if(gender_str=='M'):
         gender=0
     else:
